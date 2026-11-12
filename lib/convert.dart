@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'ingredients.dart';
-
+import 'units.dart';
 
 class ConvertPage extends StatefulWidget {
   const ConvertPage({super.key});
@@ -11,6 +11,7 @@ class ConvertPage extends StatefulWidget {
 
 class _ConvertPageState extends State<ConvertPage> {
   String selected = 'Sugar';
+  String unit = 'cup';
   final TextEditingController amountController = TextEditingController();
   String result = '';
 
@@ -24,10 +25,11 @@ class _ConvertPageState extends State<ConvertPage> {
     }
     double gramsPerCup = ingredients[selected]![0];
     double kcalPer100 = ingredients[selected]![1];
-    double grams = amount * gramsPerCup;
+    double grams = convertToGrams(amount, gramsPerCup, unit);
     double kcal = grams / 100 * kcalPer100;
     setState(() {
-      result = '${grams.toStringAsFixed(0)} g | about ${kcal.toStringAsFixed(0)} kcal';
+      result =
+      '${grams.toStringAsFixed(0)} g | about ${kcal.toStringAsFixed(0)} kcal';
     });
   }
 
@@ -42,17 +44,32 @@ class _ConvertPageState extends State<ConvertPage> {
             DropdownButton<String>(
               value: selected,
               isExpanded: true,
-              items: ingredients.keys.map((name) => DropdownMenuItem(value: name, child: Text(name))).toList(),
+              items: ingredients.keys
+                  .map((name) =>
+                  DropdownMenuItem(value: name, child: Text(name)))
+                  .toList(),
               onChanged: (value) {
                 setState(() {
                   selected = value!;
                 });
               },
             ),
+            DropdownButton<String>(
+              value: unit,
+              isExpanded: true,
+              items: unitRatios.keys
+                  .map((u) => DropdownMenuItem(value: u, child: Text(u)))
+                  .toList(),
+              onChanged: (value) {
+                setState(() {
+                  unit = value!;
+                });
+              },
+            ),
             TextField(
               controller: amountController,
               keyboardType: TextInputType.number,
-              decoration: const InputDecoration(labelText: 'Amount (cups)'),
+              decoration: const InputDecoration(labelText: 'Amount'),
             ),
             const SizedBox(height: 16),
             ElevatedButton(onPressed: convert, child: const Text('Convert')),
