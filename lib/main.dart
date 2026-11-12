@@ -46,6 +46,7 @@ class HomePage extends StatelessWidget {
               },
               child: const Text('Convert'),
             ),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
                 Navigator.push( context, MaterialPageRoute( builder : (context) => const ConvertPage()),
@@ -54,6 +55,7 @@ class HomePage extends StatelessWidget {
               },
               child: const Text('Scale Recipe'),
             ),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
                 Navigator.push( context, MaterialPageRoute( builder : (context) => const ConvertPage()),
@@ -61,6 +63,7 @@ class HomePage extends StatelessWidget {
                     },
               child: const Text('Oven Temp'),
             ),
+            const SizedBox(height: 16),
           ],
         ),
       ),
