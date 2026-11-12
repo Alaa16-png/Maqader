@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'convert.dart';
+import 'scale.dart';
+import 'oven.dart';
+
 void main(){
  runApp(const MyApp());
 }
@@ -33,17 +37,28 @@ class HomePage extends StatelessWidget {
                 color: Color(0xFFC4521A),
               ),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 42),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push( context, MaterialPageRoute( builder : (context) => const ConvertPage()),
+
+                );
+              },
               child: const Text('Convert'),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push( context, MaterialPageRoute( builder : (context) => const ConvertPage()),
+
+                );
+              },
               child: const Text('Scale Recipe'),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push( context, MaterialPageRoute( builder : (context) => const ConvertPage()),
+                );
+                    },
               child: const Text('Oven Temp'),
             ),
           ],
